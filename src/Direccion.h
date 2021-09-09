@@ -16,6 +16,7 @@ class Direccion {
 
     public:
         Direccion(string, int);
+        Direccion();
         ~Direccion();
         const string getCalle();
         const int getNro();
@@ -26,6 +27,7 @@ class Direccion {
         void setPiso(int);
         void setDpto(char);
         void imprimirInfo();
+        void grabarInfoDireccion(string, int, int = 0, char= ' ');
 
     
 };

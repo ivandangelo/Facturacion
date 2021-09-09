@@ -6,6 +6,7 @@ Direccion::Direccion(string _calle, int _nro){
 	piso = 0;
 	dpto = ' ';
 }
+Direccion::Direccion(){}
 Direccion::~Direccion(){}
 const string Direccion::getCalle(){ return calle; }
 const int Direccion::getNro(){ return nro; }
@@ -20,4 +21,11 @@ void Direccion::imprimirInfo(){
     cout << "Numero: " << getNro() << "\n";
     cout << "Piso: " << getPiso() << "\n";
     cout << "Depto: " << getDpto() << "\n";
+}
+void Direccion::grabarInfoDireccion(string _calle, int _nro, int _piso, char _dpto){
+    setCalle(_calle);
+    setNro(_nro);
+    setPiso(_piso);
+    setDpto(_dpto);
+
 }

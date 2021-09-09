@@ -3,3 +3,4 @@
 *.layout
 *.win
 src/*.o
+.vscode
