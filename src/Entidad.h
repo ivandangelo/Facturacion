@@ -10,41 +10,46 @@ using namespace std;
 class Entidad{
     private:
         Direccion dir;
-        long telefono;
+        string telefono;
         string email;
-        long cuit;
+        string cuit;
 
     public:
-        Entidad(long, string, long);
+        Entidad(string, string, string);
         ~Entidad();
-        const long getTelefono();
+        const string getTelefono();
         const string getEmail();
-        const long getCuit();
+        const string getCuit();
         const Direccion getDireccion();
-        void setDireccion(string, int, int = 0, char = ' ');
-        void setTelefono(long);
+        void setDireccion(Direccion _dir);
+        void setTelefono(string);
         void setEmail(string);
-        void setCuit(long);
-        void imprimirInfo();
+        void setCuit(string);
+        virtual void imprimirInfo();
+        void grabarInfoEntidad(string, int, int, char, string, string, string);
 
     
 };
 
-class Cliente : public Entidad{
+class Agente : public Entidad{
     private:
         string nombre;
+        string razon;
         Porcentaje IVA;
         Porcentaje IIBB;
     public:
-        Cliente(string, long, string, long);
-        ~Cliente();
+        Agente(string, string, string);
+        ~Agente();
         void imprimirInfo();
         const string getNombre();
+        const string getRazon();
         const Porcentaje getIva();
         const Porcentaje getIibb();
         void setNombre(string);
+        void setRazon(string);
         void setIva(string, int);
         void setIibb(string, int);
+        void grabarInfoAgente(string, int, int, char, string, string, string, string, string, string, int, string, int);
 
 };
 

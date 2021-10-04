@@ -12,13 +12,13 @@ class Porcentaje{
 
     public:
         Porcentaje();
-        Porcentaje(string, int);
         ~Porcentaje();
         const string getDescripcion();
         const int getPorcentaje();
         void setPorcentaje(int);
         void setDescripcion(string);
         void imprimirInfo();
+        void grabarInfoPorcentaje(string, int);
     
 };
 

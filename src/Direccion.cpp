@@ -1,11 +1,5 @@
 #include "Direccion.h"
 
-Direccion::Direccion(string _calle, int _nro){
-	calle = _calle;
-	nro = _nro;
-	piso = 0;
-	dpto = ' ';
-}
 Direccion::Direccion(){}
 Direccion::~Direccion(){}
 const string Direccion::getCalle(){ return calle; }
