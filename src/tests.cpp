@@ -1,5 +1,6 @@
 #include "Entidad.h"
 #include "Porcentaje.h"
+#include "Factura.h"
 
 void test0Direccion(){
     Direccion dir;
@@ -22,9 +23,8 @@ void test0Porcentaje(){
 }
 
 void test0Entidad(){
-    Entidad ent("1566071993", "ivanuntref@gmail", "20-38889899-3");
-    ent.imprimirInfo();
-    ent.grabarInfoEntidad("Av Marquez", 2521, 13, '9', "1566071859", "juanperez@yahoo.com", "20-1234567-3");
+    Entidad ent;
+    ent.grabarInfo("Av Marquez", 2521, 13, '9', "1566071859", "juanperez@yahoo.com", "20-1234567-3");
     ent.imprimirInfo();
     Direccion direDeEnt = ent.getDireccion();
     direDeEnt.imprimirInfo();
@@ -35,16 +35,22 @@ void test0Entidad(){
 
 }
 
+void test0Factura(){
+    Agente a;
+    a.grabarInfo("Av Marquez", 2521, 13, '9', "1566071993", "ivanuntref@gmail.com", "20388898993", "Ivan", 
+                "Cliente particular", "IVA", 21, "IIBB", 31);
+    /*(string _calle, int _nro, int _piso, char _depto, string _tel, string _email, string _cuil, string _nombre, string _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb)*/
+    Head h;
+    h.grabarInfoHead(a, "14/10/2021", 1);
+    h.imprimirInfoHead();
+
+}
+
 //g++ -g -o tests tests.cpp Direccion.cpp Entidad.cpp
-//g++ -g -o tests tests.cpp Direccion.cpp Entidad.cpp Porcentaje.cpp
+//g++ -g -o tests tests.cpp Direccion.cpp Entidad.cpp Porcentaje.cpp Factura.cpp
 
 int main(){
-    test0Direccion();
-    cout << "####################################################\n";
-    test0Porcentaje();
-    cout << "####################################################\n";
-    test0Entidad();
-    cout << "####################################################\n";
+    test0Factura();
     system("pause");
 	return 0;
 }

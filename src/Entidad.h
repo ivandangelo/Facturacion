@@ -15,7 +15,7 @@ class Entidad{
         string cuit;
 
     public:
-        Entidad(string, string, string);
+        /*Entidad(string, string, string);*/
         ~Entidad();
         const string getTelefono();
         const string getEmail();
@@ -26,7 +26,7 @@ class Entidad{
         void setEmail(string);
         void setCuit(string);
         virtual void imprimirInfo();
-        void grabarInfoEntidad(string, int, int, char, string, string, string);
+        virtual void grabarInfo(string, int, int, char, string, string, string);
 
     
 };
@@ -38,7 +38,7 @@ class Agente : public Entidad{
         Porcentaje IVA;
         Porcentaje IIBB;
     public:
-        Agente(string, string, string);
+        /*Agente(string, string, string);*/
         ~Agente();
         void imprimirInfo();
         const string getNombre();
@@ -49,7 +49,7 @@ class Agente : public Entidad{
         void setRazon(string);
         void setIva(string, int);
         void setIibb(string, int);
-        void grabarInfoAgente(string, int, int, char, string, string, string, string, string, string, int, string, int);
+        void grabarInfo(string, int, int, char, string, string, string, string, string, string, int, string, int);
 
 };
 

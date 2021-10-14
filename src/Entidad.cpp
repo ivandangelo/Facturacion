@@ -1,13 +1,13 @@
 #include "Entidad.h"
-#include "Direccion.h"
+/*#include "Direccion.h"*/
 
-Entidad::Entidad(string _telefono, string _email, string _cuit){
+/*Entidad::Entidad(string _telefono, string _email, string _cuit){
     email = _email;
     telefono = _telefono;
     cuit = _cuit;
     dir.grabarInfoDireccion("Ing dire.", 0, -1, 'a');
 
-}
+}*/
 
 Entidad::~Entidad(){}
 const string Entidad::getTelefono(){ return telefono; }
@@ -31,7 +31,7 @@ void Entidad::imprimirInfo(){
     cout << "Direccion" << "\n";
     dir.imprimirInfo();
 }
-void Entidad::grabarInfoEntidad(string _calle, int _nro, int _piso, char _dpto, string _tel, string _email, string _cuil){
+void Entidad::grabarInfo(string _calle, int _nro, int _piso, char _dpto, string _tel, string _email, string _cuil){
     dir.grabarInfoDireccion(_calle, _nro, _piso, _dpto);
     setTelefono(_tel);
     setEmail(_email);
@@ -39,12 +39,13 @@ void Entidad::grabarInfoEntidad(string _calle, int _nro, int _piso, char _dpto, 
 
 }
 
+/*
 Agente::Agente(string _telefono, string _email, string _cuit): Entidad(_telefono, _email, _cuit){
     nombre = "Ing. Nombre";
     razon = "Ing. Razon";
     IVA.grabarInfoPorcentaje("Ing. Descript IVA", 0);
     IIBB.grabarInfoPorcentaje("Ing. Descript IIBB", 0);
-}
+}*/
 Agente::~Agente(){}
 void Agente::imprimirInfo(){
     cout << "Nombre: " << getNombre() << "\n";
@@ -72,11 +73,11 @@ void Agente::setIibb(string _descripcion, int _porcentaje){
 
 
 }
-void Agente::grabarInfoAgente(string _calle, int _nro, int _piso, char _depto, string _tel, string _email, string _cuil, string _nombre, string _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb){
+void Agente::grabarInfo(string _calle, int _nro, int _piso, char _depto, string _tel, string _email, string _cuil, string _nombre, string _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb){
     
     setNombre(_nombre);
     setRazon(_razon);
-    Entidad::grabarInfoEntidad(_calle, _nro, _piso, _depto, _tel, _email, _cuil);
+    Entidad::grabarInfo(_calle, _nro, _piso, _depto, _tel, _email, _cuil);
     IVA.grabarInfoPorcentaje(_descriptIva, _porcIva);
     IIBB.grabarInfoPorcentaje(_descriptIibb, _porcIibb);
 
