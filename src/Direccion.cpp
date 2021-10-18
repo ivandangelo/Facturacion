@@ -2,7 +2,7 @@
 
 Direccion::Direccion(){}
 Direccion::~Direccion(){}
-const string Direccion::getCalle(){ return calle; }
+string Direccion::getCalle() const { return calle; }
 const int Direccion::getNro(){ return nro; }
 const int Direccion::getPiso(){ return piso; }
 const char Direccion::getDpto(){ return dpto; }

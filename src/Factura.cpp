@@ -7,11 +7,56 @@ Head::Head(){
 Head::~Head(){}
 void Head::grabarInfoHead(Agente _agent, string _fecha, int _nroFactura){
     agent = _agent;
+    fecha = _fecha;
+    nroFactura = _nroFactura;
 
 }
 void Head::imprimirInfoHead(){
-    agent.imprimirInfo();
+
+    cout << "############################################################################################################\n";
+    cout << "           " << fecha << "\n";
+    cout << "           Factura Nro: " << nroFactura << "\n";
+    cout << "           Nombre: " << agent.getNombre() << "\n";
+    cout << "           Razon: " << agent.getRazon() << "\n";
+    cout << "           Direccion: " << agent.getDireccion().getCalle() << "\n";
+    cout << "############################################################################################################\n";
 
 }
 
+Body::Body(){
+    ultimoProductoIngresado = 0;
+    iva = 0;
+}
+Body::~Body(){}
+
+const int Body::getUltimoProducto(){
+    return ultimoProductoIngresado;
+}
+
+void Body::mostrarProductos(){
+
+}
+
+void Body::ingresarProducto(sProductoAFacturar _producto){
+    productos[getUltimoProducto()] = _producto;
+    ultimoProductoIngresado++;
+}
+
+void Body::imprimirInfoBody(){
+    cout << "############################################################################################################\n";
+    cout << "\t\tProducto\t\tCantidad\t\tP/U\t\tTotal de articulo\n";
+    for(int i=0; i<ultimoProductoIngresado; i++){
+        productos[i].totalArticulo = productos[i].precioUnitario * productos[i].cantidad;
+        
+        if(i == ultimoProductoIngresado-1){
+            cout << "\t\t" << productos[i].nombre << "\t\t\t" << productos[i].cantidad << "\t\t\t" << productos[i].precioUnitario  << fixed<<setprecision(2) << "\t" << productos[i].totalArticulo << "\n";
+
+        }else {
+            cout << "\t\t" << productos[i].nombre << "\t\t\t" << productos[i].cantidad << "\t\t\t" << productos[i].precioUnitario  << fixed<<setprecision(2) << "\t\t" << productos[i].totalArticulo << "\n";
+        }
+        
+
+    }
+    cout << "############################################################################################################\n";
+}
 

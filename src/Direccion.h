@@ -17,7 +17,7 @@ class Direccion {
     public:
         Direccion();
         ~Direccion();
-        const string getCalle();
+        string getCalle() const;
         const int getNro();
         const int getPiso();
         const char getDpto();

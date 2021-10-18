@@ -49,8 +49,32 @@ void test0Factura(){
 //g++ -g -o tests tests.cpp Direccion.cpp Entidad.cpp
 //g++ -g -o tests tests.cpp Direccion.cpp Entidad.cpp Porcentaje.cpp Factura.cpp
 
+
+
 int main(){
-    test0Factura();
+    Body b;
+    int productos = b.getUltimoProducto();
+    cout << productos << "\n";
+
+    sProductoAFacturar test;
+    sProductoAFacturar p2;
+    sProductoAFacturar p3;
+    p2.cantidad = 3;
+    p2.nombre = "Teclado";
+    p2.precioUnitario = 3000.0;
+    p3.cantidad = 10;
+    p3.nombre = "GPU";
+    p3.precioUnitario = 250000.0;
+    test.cantidad = 5;
+    test.nombre = "Mouse";
+    test.precioUnitario = 1000.0;
+    b.ingresarProducto(test);
+    b.ingresarProducto(p2);
+    b.ingresarProducto(p3);
+    productos = b.getUltimoProducto();
+    cout << productos << "\n";
+    b.imprimirInfoBody();
+
     system("pause");
 	return 0;
 }

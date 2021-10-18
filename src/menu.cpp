@@ -12,10 +12,19 @@ struct sAgente{
     char depto;
 
 };
+
+struct sFactura{
+
+};
+
 Agente a;
+Factura f;
 vector<Agente> agentes(10, a);
+vector<Factura> facturas(10, f);
 int ultimoAgente = 0;
+int ultimaFactura = 1;
 sAgente agenteAux;
+sFactura facturaAux;
 
 void ingresarAgente(){
     system("cls");
