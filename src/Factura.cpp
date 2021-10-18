@@ -59,9 +59,6 @@ void Body::imprimirInfoBody(){
         gotoxy(64, i+8); cout << productos[i].precioUnitario;
         gotoxy(80, i+8); cout << fixed << setprecision(2) << productos[i].totalArticulo;
         ultimaPos = i+8;
-        /*cout << "\t\t" << productos[i].nombre << "\t\t" << productos[i].cantidad << "\t\t" << productos[i].precioUnitario  << fixed<<setprecision(2) << "\t\t" << productos[i].totalArticulo << "\n";*/
-
-
 
     }
     gotoxy(0, ultimaPos+1);
