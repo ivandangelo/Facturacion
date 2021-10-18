@@ -18,9 +18,9 @@ class Direccion {
         Direccion();
         ~Direccion();
         string getCalle() const;
-        const int getNro();
-        const int getPiso();
-        const char getDpto();
+        int getNro() const;
+        int getPiso() const;
+        char getDpto() const;
         void setCalle(string);
         void setNro(int);
         void setPiso(int);

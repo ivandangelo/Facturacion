@@ -14,11 +14,11 @@ void Head::grabarInfoHead(Agente _agent, string _fecha, int _nroFactura){
 void Head::imprimirInfoHead(){
 
     cout << "############################################################################################################\n";
-    cout << "           " << fecha << "\n";
-    cout << "           Factura Nro: " << nroFactura << "\n";
-    cout << "           Nombre: " << agent.getNombre() << "\n";
-    cout << "           Razon: " << agent.getRazon() << "\n";
-    cout << "           Direccion: " << agent.getDireccion().getCalle() << "\n";
+    cout << "                                                                                             " << fecha << "\n";
+    cout << "       Factura Nro: " << nroFactura << "\n";
+    cout << "       Nombre: " << agent.getNombre() << "\n";
+    cout << "       Razon: " << agent.getRazon() << "\n";
+    cout << "       Direccion: " << agent.getDireccion().getCalle() << " " << agent.getDireccion().getNro() << " piso " << agent.getDireccion().getPiso()  << " depto " << agent.getDireccion().getDpto() << "\n";
     cout << "############################################################################################################\n";
 
 }
@@ -33,17 +33,12 @@ const int Body::getUltimoProducto(){
     return ultimoProductoIngresado;
 }
 
-void Body::mostrarProductos(){
-
-}
-
 void Body::ingresarProducto(sProductoAFacturar _producto){
     productos[getUltimoProducto()] = _producto;
     ultimoProductoIngresado++;
 }
 
 void Body::imprimirInfoBody(){
-    cout << "############################################################################################################\n";
     cout << "\t\tProducto\t\tCantidad\t\tP/U\t\tTotal de articulo\n";
     for(int i=0; i<ultimoProductoIngresado; i++){
         productos[i].totalArticulo = productos[i].precioUnitario * productos[i].cantidad;
@@ -58,5 +53,18 @@ void Body::imprimirInfoBody(){
 
     }
     cout << "############################################################################################################\n";
+}
+
+Factura::Factura(){}
+Factura::~Factura(){}
+void Factura::grabarInfoFactura(Head _h, Body _b){
+    h = _h;
+    b = _b;
+    
+}
+void Factura::imprimirInfoFactura(){
+    h.imprimirInfoHead();
+    b.imprimirInfoBody();
+
 }
 

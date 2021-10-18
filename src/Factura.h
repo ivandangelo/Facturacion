@@ -33,7 +33,6 @@ class Body{
         Body();
         ~Body();
         const int getUltimoProducto();
-        void mostrarProductos();
         void ingresarProducto(sProductoAFacturar);
         void imprimirInfoBody();
 
@@ -44,6 +43,14 @@ class Foot{
 };
 
 class Factura{
+    private:
+        Head h;
+        Body b;
+    public:
+        Factura();
+        ~Factura();
+        void grabarInfoFactura(Head, Body);
+        void imprimirInfoFactura();
 
 
 };

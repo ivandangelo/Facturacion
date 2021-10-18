@@ -53,8 +53,13 @@ void test0Factura(){
 
 int main(){
     Body b;
-    int productos = b.getUltimoProducto();
-    cout << productos << "\n";
+    Head h;
+    Agente a;
+    Factura f;
+    a.grabarInfo("Av Marquez", 2521, 13, '9', "1566071993", "ivanuntref@gmail.com", "20388898993", "Ivan", 
+                "Cliente particular", "IVA", 21, "IIBB", 31);
+
+    h.grabarInfoHead(a, "20/04/2021", 1);
 
     sProductoAFacturar test;
     sProductoAFacturar p2;
@@ -71,9 +76,11 @@ int main(){
     b.ingresarProducto(test);
     b.ingresarProducto(p2);
     b.ingresarProducto(p3);
-    productos = b.getUltimoProducto();
-    cout << productos << "\n";
-    b.imprimirInfoBody();
+
+    f.grabarInfoFactura(h, b);
+    f.imprimirInfoFactura();
+
+
 
     system("pause");
 	return 0;
