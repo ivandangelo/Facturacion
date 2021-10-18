@@ -31,7 +31,7 @@ void Entidad::imprimirInfo(){
     cout << "Direccion" << "\n";
     dir.imprimirInfo();
 }
-void Entidad::grabarInfo(string _calle, int _nro, int _piso, char _dpto, string _tel, string _email, string _cuil){
+void Entidad::grabarInfo(string _calle, int _nro, string _piso, string _dpto, string _tel, string _email, string _cuil){
     dir.grabarInfoDireccion(_calle, _nro, _piso, _dpto);
     setTelefono(_tel);
     setEmail(_email);
@@ -73,7 +73,7 @@ void Agente::setIibb(string _descripcion, int _porcentaje){
 
 
 }
-void Agente::grabarInfo(string _calle, int _nro, int _piso, char _depto, string _tel, string _email, string _cuil, string _nombre, string _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb){
+void Agente::grabarInfo(string _calle, int _nro, string _piso, string _depto, string _tel, string _email, string _cuil, string _nombre, string _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb){
     
     setNombre(_nombre);
     setRazon(_razon);

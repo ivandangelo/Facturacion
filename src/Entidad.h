@@ -26,7 +26,7 @@ class Entidad{
         void setEmail(string);
         void setCuit(string);
         virtual void imprimirInfo();
-        virtual void grabarInfo(string, int, int, char, string, string, string);
+        virtual void grabarInfo(string, int, string, string, string, string, string);
 
     
 };
@@ -49,7 +49,7 @@ class Agente : public Entidad{
         void setRazon(string);
         void setIva(string, int);
         void setIibb(string, int);
-        void grabarInfo(string, int, int, char, string, string, string, string, string, string, int, string, int);
+        void grabarInfo(string, int, string, string, string, string, string, string, string, string, int, string, int);
 
 };
 

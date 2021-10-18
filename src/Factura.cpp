@@ -1,4 +1,14 @@
 #include "Factura.h"
+ 
+void gotoxy(int x,int y){  
+    HANDLE hcon;  
+    hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
+    COORD dwPos;  
+    dwPos.X = x;  
+    dwPos.Y= y;  
+    SetConsoleCursorPosition(hcon,dwPos);  
+}  
+
 
 Head::Head(){
     fecha = '-';
@@ -39,19 +49,22 @@ void Body::ingresarProducto(sProductoAFacturar _producto){
 }
 
 void Body::imprimirInfoBody(){
+    int ultimaPos;
     cout << "\t\tProducto\t\tCantidad\t\tP/U\t\tTotal de articulo\n";
+    /**/
     for(int i=0; i<ultimoProductoIngresado; i++){
-        productos[i].totalArticulo = productos[i].precioUnitario * productos[i].cantidad;
-        
-        if(i == ultimoProductoIngresado-1){
-            cout << "\t\t" << productos[i].nombre << "\t\t\t" << productos[i].cantidad << "\t\t\t" << productos[i].precioUnitario  << fixed<<setprecision(2) << "\t" << productos[i].totalArticulo << "\n";
+        productos[i].totalArticulo = productos[i].cantidad * productos[i].precioUnitario;
+        gotoxy(16,i+8); cout << productos[i].nombre;
+        gotoxy(40, i+8); cout << productos[i].cantidad;
+        gotoxy(64, i+8); cout << productos[i].precioUnitario;
+        gotoxy(80, i+8); cout << fixed << setprecision(2) << productos[i].totalArticulo;
+        ultimaPos = i+8;
+        /*cout << "\t\t" << productos[i].nombre << "\t\t" << productos[i].cantidad << "\t\t" << productos[i].precioUnitario  << fixed<<setprecision(2) << "\t\t" << productos[i].totalArticulo << "\n";*/
 
-        }else {
-            cout << "\t\t" << productos[i].nombre << "\t\t\t" << productos[i].cantidad << "\t\t\t" << productos[i].precioUnitario  << fixed<<setprecision(2) << "\t\t" << productos[i].totalArticulo << "\n";
-        }
-        
+
 
     }
+    gotoxy(0, ultimaPos+1);
     cout << "############################################################################################################\n";
 }
 

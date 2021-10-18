@@ -1,6 +1,7 @@
 #ifndef SRC_FACTURA_H
 #define SRC_FACTURA_H
 #include "Entidad.h"
+#include <windows.h>
 #include <iomanip>
 struct sProductoAFacturar{
     string nombre = "--";
