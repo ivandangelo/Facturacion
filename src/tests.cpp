@@ -73,9 +73,8 @@ void test1Factura() {
     p5.nombre = "DISCO HDD";
     p5.precioUnitario = 300.0;
     p6.cantidad = 15;
-    p6.nombre = "DISCO HDD";
-    p6.precioUnitario = 300.0;
-    /*
+    p6.nombre = "MONITOR";
+    p6.precioUnitario = 150000.0;
     b.ingresarProducto(test);
     
     b.ingresarProducto(p2);
@@ -84,7 +83,7 @@ void test1Factura() {
     
     b.ingresarProducto(p4);
     b.ingresarProducto(p5);
-    b.ingresarProducto(p6);*/
+    b.ingresarProducto(p6);
     
     f.grabarInfoFactura(h, b);
     f.imprimirInfoFactura();

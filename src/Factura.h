@@ -21,6 +21,7 @@ class Head{
         ~Head();
         void grabarInfoHead(Agente, string, int);
         void imprimirInfoHead();
+        Agente getAgent() const;
 
 
 };
@@ -36,6 +37,7 @@ class Body{
         const int getUltimoProducto();
         void ingresarProducto(sProductoAFacturar);
         void imprimirInfoBody();
+        void setIva(int);
 
 };
 

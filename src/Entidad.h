@@ -43,8 +43,8 @@ class Agente : public Entidad{
         void imprimirInfo();
         const string getNombre();
         const string getRazon();
-        const Porcentaje getIva();
-        const Porcentaje getIibb();
+        Porcentaje getIva() const;
+        Porcentaje getIibb() const;
         void setNombre(string);
         void setRazon(string);
         void setIva(string, int);

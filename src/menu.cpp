@@ -25,19 +25,47 @@ struct sFactura{
 
 };
 
-Agente a;
-Factura f;
-vector<Agente> agentes(10, a);
-vector<Factura> facturas(10, f);
+
+//vector<Agente> agentes(10, a);
+Agente agentes[10];
+//vector<Factura> facturas(10, f);
+Factura facturas[10];
 int ultimoAgente = 0;
 int ultimaFactura = 0;
-sAgente agenteAux;
-sFactura facturaAux;
-sHead headAux;
-sProductoAFacturar productoAux;
+
+int validarId(int _id, string accion){
+    bool corte = false;
+    while (!corte){
+        fflush(stdin);
+        if(accion == "CLIENTE"){
+            if(_id < 0 || _id >= ultimoAgente){
+                cout << "ID incorrecto, intente nuevamente\n";
+                cin >> _id;
+                
+            } else { corte = true; }
+
+
+        }else if(accion == "FACTURA"){
+             if(_id < 0 || _id >= ultimaFactura){
+                cout << "ID incorrecto, intente nuevamente\n";
+                cin >> _id;
+                
+            } else { corte = true; }
+
+        }
+
+    }
+    
+
+    system("cls");
+
+    return _id;
+
+}
 
 void ingresarAgente(){
-    system("cls");
+    Agente a;
+    sAgente agenteAux;
     cout << "--------DATOS PERSONALES--------\n";
     cout << "Ingrese nombre ";
     getline(cin, agenteAux.nombre);
@@ -70,7 +98,6 @@ void ingresarAgente(){
     cout << "Ingrese valor IIBB ";
     cin >> agenteAux.iibb;
 
-    /*(string _calle, int _nro, int _piso, char _depto, string _tel, string _email, string _cuil, string _nombre, string _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb)*/
     a.grabarInfo(agenteAux.calle, agenteAux.nro, agenteAux.piso, agenteAux.depto, agenteAux.tel, agenteAux.email, 
                         agenteAux.cuit, agenteAux.nombre, agenteAux.razon, agenteAux.desIva, agenteAux.iva, 
                         agenteAux.desIibb, agenteAux.iibb);
@@ -78,42 +105,52 @@ void ingresarAgente(){
     ultimoAgente++;
     fflush(stdin);
 
-    cout << "Cliente creado con exito";
-    system("pause");
-    system("cls");
+    cout << "Cliente creado con exito\n";
 
 
 
+}
+
+void buscarFactura(){
+    int id;
+    cout << "Ingrese el ID de la factura a buscar ";
+    cin >> id;
+    id = validarId(id, "FACTURA");
+    facturas[id].imprimirInfoFactura();
+    fflush(stdin);
 }
 
 void buscarCliente(){
     int id;
     cout << "Ingrese el ID del cliente a buscar ";
     cin >> id;
+    id = validarId(id, "CLIENTE");
     agentes[id].imprimirInfo();
 
     fflush(stdin);
-    system("pause");
-    system("cls");
-
 }
 
 void facturar(){
 
+    Factura f;
+    sFactura facturaAux;
+    sHead headAux;
+    sProductoAFacturar productoAux;
     int id = 0;
     bool salir = false;
     string respuesta = "";
 
     cout << "Ingrese ID del cliente ";
     cin >> id;
+    id = validarId(id, "CLIENTE");
     headAux.agent = agentes[id];
     fflush(stdin);
     cout << "Ingrese la fecha ";
     getline(cin, headAux.fecha);
-    headAux.nroFactura = ultimaFactura+1;
+    headAux.nroFactura = ultimaFactura;
     facturaAux.h.grabarInfoHead(headAux.agent, headAux.fecha, headAux.nroFactura);
 
-    cout << "Ingrese los productos\n";
+    cout << "--------PRODUCTOS A FACTURAR--------\n";
     while(!salir){
         cout << "Ingrese el nombre ";
         getline(cin, productoAux.nombre);
@@ -135,19 +172,18 @@ void facturar(){
         }
 
     }
-
     f.grabarInfoFactura(facturaAux.h, facturaAux.b);
+    system("cls");
     f.imprimirInfoFactura();
-
     facturas[ultimaFactura] = f;
     ultimaFactura++;
-    system("pause");
-    system("cls");
 
     
 
 
 }
+
+
 
 /*g++ -g -o menu menu.cpp Direccion.cpp Factura.cpp Entidad.cpp Porcentaje.cpp*/
 int main(){
@@ -156,16 +192,17 @@ int main(){
 
     do{
 
-        cout << "--- MENU PRINCIPAL---" << "\n";
-        cout << "1) Ingresar Cliente" << "\n";
-        cout << "2) Buscar Cliente" << "\n";
-        cout << "3) Buscar Factura" << "\n";
-        cout << "4) Facturar" << "\n";
-        cout << "5) Salir" << "\n";
+        cout << "--- MENU PRINCIPAL---\n";
+        cout << "1) Ingresar Cliente\n";
+        cout << "2) Buscar Cliente\n";
+        cout << "3) Buscar Factura\n";
+        cout << "4) Facturar\n";
+        cout << "5) Editar Cliente\n";
+        cout << "6) Salir\n";
         cout << "Opcion: " ;
         cin>> op;
 	    fflush(stdin);
-
+        system("cls");
 
         switch(op)
             {
@@ -175,19 +212,27 @@ int main(){
                 case 2:
                     buscarCliente();
                     break;
-                case 5:	
-                    cout << "Gracias por utilizar el programa\n";
-                    salir = true;
+                case 3:
+                    buscarFactura();
                     break;
                 case 4:
                     facturar();
+                    break;
+                case 5:
+                    //editarCliente;
+                    break;
+                case 6:	
+                    cout << "Gracias por utilizar el programa\n";
+                    salir = true;
                     break;
                 default:
                     cout << "Opcion no valida\n";
                     break;
             }
+        system("pause");
+        system("cls");
+        
     }while(!salir);
 
-    system("pause");
 	return 0;
 }

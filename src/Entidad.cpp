@@ -59,8 +59,8 @@ void Agente::imprimirInfo(){
 
 const string Agente::getNombre(){ return nombre; }
 const string Agente::getRazon(){ return razon; }
-const Porcentaje Agente::getIva(){ return IVA; }
-const Porcentaje Agente::getIibb() { return IIBB; }
+Porcentaje Agente::getIva() const{ return IVA; }
+Porcentaje Agente::getIibb() const{ return IIBB; }
 void Agente::setNombre(string _nombre){ nombre = _nombre; }
 void Agente::setRazon(string _razon){ razon = _razon; }
 void Agente::setIva(string _descripcion, int _porcentaje){
