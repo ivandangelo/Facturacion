@@ -25,10 +25,7 @@ struct sFactura{
 
 };
 
-
-//vector<Agente> agentes(10, a);
 Agente agentes[10];
-//vector<Factura> facturas(10, f);
 Factura facturas[10];
 int ultimoAgente = 0;
 int ultimaFactura = 0;
