@@ -182,6 +182,66 @@ void facturar(){
 
 
 
+void editarCliente(){
+    sAgente agenteAux;
+    int id = 0;
+    int op = 0;
+    cout << "Ingrese el ID del cliente a editar\n";
+    cin >> id;
+    fflush(stdin);
+    id = validarId(id, "CLIENTE");
+    fflush(stdin);
+    cout << "Que desea editar?\n";
+    cout << "1) DATOS PERSONALES\n";
+    cout << "2) DIRECCION\n";
+    cout << "3) DATOS CONTABLES\n";
+    cout << "4) Volver al menu principal\n";
+    cout << "Opcion: ";
+    cin >> op;
+    fflush(stdin);
+    switch (op)
+        {
+            case 1:
+                cout << "Ingrese nombre ";
+                getline(cin, agenteAux.nombre);
+                cout << "Ingrese razon ";
+                getline(cin, agenteAux.razon);
+                cout << "Ingrese email ";
+                getline(cin, agenteAux.email);
+                cout << "Ingrese cuit ";
+                getline(cin, agenteAux.cuit);
+                cout << "Ingrese numero telefono ";
+                getline(cin, agenteAux.tel);
+
+                agentes[id].setNombre(agenteAux.nombre);
+                agentes[id].setRazon(agenteAux.razon);
+                agentes[id].setEmail(agenteAux.email);
+                agentes[id].setCuit(agenteAux.cuit);
+                agentes[id].setTelefono(agenteAux.tel);
+                break;
+            case 2:
+                /* code */
+                break;
+            case 3:
+                /* code */
+                break;
+            case 4:
+                break;
+            
+            default:
+                cout << "Opcion incorrecta, intente nuevamente\n";
+                break;
+        }
+
+    if(op > 0 && op < 4){
+        system("cls");
+        cout << "Cliente editado exitosamente\n";
+        agentes[id].imprimirInfo();
+    }
+
+
+}
+
 /*g++ -g -o menu menu.cpp Direccion.cpp Factura.cpp Entidad.cpp Porcentaje.cpp*/
 int main(){
     bool salir = false;
@@ -216,7 +276,11 @@ int main(){
                     facturar();
                     break;
                 case 5:
-                    //editarCliente;
+                    if (ultimoAgente == 0){
+                        cout << "Primero debe crear un cliente\n";
+                    }else{
+                        editarCliente();
+                    }
                     break;
                 case 6:	
                     cout << "Gracias por utilizar el programa\n";
