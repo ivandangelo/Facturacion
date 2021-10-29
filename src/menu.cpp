@@ -79,11 +79,11 @@ void ingresarAgente(){
     getline(cin, agenteAux.calle);
     cout << "Ingrese numero ";
     cin >> agenteAux.nro;
-    cout << "Ingrese piso ";
-    cin >> agenteAux.piso;
-    cout << "Ingrese depto ";
-    cin >> agenteAux.depto;
     fflush(stdin);
+    cout << "Ingrese piso ";
+    getline(cin, agenteAux.piso);
+    cout << "Ingrese depto ";
+    getline(cin, agenteAux.depto);
     cout << "--------DATOS CONTABLES--------\n";
     cout << "Ingrese descripcion IVA ";
     getline(cin, agenteAux.desIva);
@@ -94,13 +94,13 @@ void ingresarAgente(){
     getline(cin, agenteAux.desIibb);
     cout << "Ingrese valor IIBB ";
     cin >> agenteAux.iibb;
+    fflush(stdin);
 
     a.grabarInfo(agenteAux.calle, agenteAux.nro, agenteAux.piso, agenteAux.depto, agenteAux.tel, agenteAux.email, 
                         agenteAux.cuit, agenteAux.nombre, agenteAux.razon, agenteAux.desIva, agenteAux.iva, 
                         agenteAux.desIibb, agenteAux.iibb);
     agentes[ultimoAgente] = a;
     ultimoAgente++;
-    fflush(stdin);
 
     cout << "Cliente creado con exito\n";
 
@@ -184,6 +184,7 @@ void facturar(){
 
 void editarCliente(){
     sAgente agenteAux;
+    Direccion dAux;
     int id = 0;
     int op = 0;
     cout << "Ingrese el ID del cliente a editar\n";
@@ -220,7 +221,18 @@ void editarCliente(){
                 agentes[id].setTelefono(agenteAux.tel);
                 break;
             case 2:
-                /* code */
+                cout << "Ingrese calle ";
+                getline(cin, agenteAux.calle);
+                cout << "Ingrese numero ";
+                cin >> agenteAux.nro;
+                fflush(stdin);
+                cout << "Ingrese piso ";
+                getline(cin, agenteAux.piso);
+                cout << "Ingrese depto ";
+                getline(cin, agenteAux.depto);
+                dAux.grabarInfoDireccion(agenteAux.calle, agenteAux.nro, agenteAux.piso, agenteAux.depto);
+
+                agentes[id].setDireccion(dAux);
                 break;
             case 3:
                 /* code */
