@@ -39,13 +39,6 @@ void Entidad::grabarInfo(string _calle, int _nro, string _piso, string _dpto, st
 
 }
 
-/*
-Agente::Agente(string _telefono, string _email, string _cuit): Entidad(_telefono, _email, _cuit){
-    nombre = "Ing. Nombre";
-    razon = "Ing. Razon";
-    IVA.grabarInfoPorcentaje("Ing. Descript IVA", 0);
-    IIBB.grabarInfoPorcentaje("Ing. Descript IIBB", 0);
-}*/
 Agente::~Agente(){}
 void Agente::imprimirInfo(){
     cout << "Nombre: " << getNombre() << "\n";
@@ -58,11 +51,29 @@ void Agente::imprimirInfo(){
 }
 
 const string Agente::getNombre(){ return nombre; }
-const string Agente::getRazon(){ return razon; }
+const string Agente::getRazon(){ 
+    string razonDevolver;
+    switch (razon)
+    {
+    case Cliente:
+        razonDevolver = "CLIENTE PARTICULAR";
+        break;
+    case Proveedor:
+        razonDevolver = "PROVEEDOR";
+        break;
+    case Empresa:
+        razonDevolver = "EMPRESA";
+        break;
+    default:
+        break;
+    } 
+
+    return razonDevolver;
+}
 Porcentaje Agente::getIva() const{ return IVA; }
 Porcentaje Agente::getIibb() const{ return IIBB; }
 void Agente::setNombre(string _nombre){ nombre = _nombre; }
-void Agente::setRazon(string _razon){ razon = _razon; }
+void Agente::setRazon(tipoCliente _razon){ razon = _razon; }
 void Agente::setIva(string _descripcion, int _porcentaje){
     IVA.setDescripcion(_descripcion);
     IVA.setPorcentaje(_porcentaje);
@@ -73,7 +84,7 @@ void Agente::setIibb(string _descripcion, int _porcentaje){
 
 
 }
-void Agente::grabarInfo(string _calle, int _nro, string _piso, string _depto, string _tel, string _email, string _cuil, string _nombre, string _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb){
+void Agente::grabarInfo(string _calle, int _nro, string _piso, string _depto, string _tel, string _email, string _cuil, string _nombre, tipoCliente _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb){
     
     setNombre(_nombre);
     setRazon(_razon);

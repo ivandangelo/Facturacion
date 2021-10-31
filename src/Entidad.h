@@ -7,6 +7,8 @@
 #include "Porcentaje.h"
 using namespace std;
 
+enum tipoCliente {Cliente, Empresa, Proveedor};
+
 class Entidad{
     private:
         Direccion dir;
@@ -34,7 +36,8 @@ class Entidad{
 class Agente : public Entidad{
     private:
         string nombre;
-        string razon;
+        //string razon;
+        tipoCliente razon;
         Porcentaje IVA;
         Porcentaje IIBB;
     public:
@@ -46,10 +49,10 @@ class Agente : public Entidad{
         Porcentaje getIva() const;
         Porcentaje getIibb() const;
         void setNombre(string);
-        void setRazon(string);
+        void setRazon(tipoCliente);
         void setIva(string, int);
         void setIibb(string, int);
-        void grabarInfo(string, int, string, string, string, string, string, string, string, string, int, string, int);
+        void grabarInfo(string, int, string, string, string, string, string, string, tipoCliente, string, int, string, int);
 
 };
 

@@ -6,8 +6,9 @@ using namespace std;
 
 
 struct sAgente{
-    string tel, email, cuit, nombre, razon, calle, desIva, desIibb, piso, depto;
+    string tel, email, cuit, nombre, calle, desIva, desIibb, piso, depto;
     int nro, iva, iibb;
+    tipoCliente razon;
 
 };
 
@@ -60,14 +61,52 @@ int validarId(int _id, string accion){
 
 }
 
+tipoCliente ingresarRazon(){
+    tipoCliente t;
+    bool salir = false;
+    int op = -1;
+    cout << "Ingrese la razon\n";
+    cout << "1) Cliente\n";
+    cout << "2) Empresa\n";
+    cout << "3) Proveedor\n";
+    do{
+        cin >> op;
+        switch (op)
+        {
+        case 1:
+            t = Cliente;
+            salir = true;
+            break;
+        case 2:
+            t = Empresa;
+            salir = true;
+            break;
+        case 3:
+            t = Proveedor;
+            salir = true;
+            break;   
+        default:
+            cout << "Opcion incorrecta, intente nuevamente\n";
+            system("pause");
+            system("cls");
+            break;
+        }
+
+        fflush(stdin);
+
+
+    }while(!salir);
+
+    return t;
+}
+
 void ingresarAgente(){
     Agente a;
     sAgente agenteAux;
     cout << "--------DATOS PERSONALES--------\n";
     cout << "Ingrese nombre ";
     getline(cin, agenteAux.nombre);
-    cout << "Ingrese razon ";
-    getline(cin, agenteAux.razon);
+    agenteAux.razon = ingresarRazon();
     cout << "Ingrese email ";
     getline(cin, agenteAux.email);
     cout << "Ingrese cuit ";
@@ -198,6 +237,8 @@ void editarCliente(){
     cout << "3) DATOS CONTABLES\n";
     cout << "4) Volver al menu principal\n";
     cout << "Opcion: ";
+    
+    
     cin >> op;
     fflush(stdin);
     switch (op)
@@ -205,8 +246,7 @@ void editarCliente(){
             case 1:
                 cout << "Ingrese nombre ";
                 getline(cin, agenteAux.nombre);
-                cout << "Ingrese razon ";
-                getline(cin, agenteAux.razon);
+                agenteAux.razon = ingresarRazon();
                 cout << "Ingrese email ";
                 getline(cin, agenteAux.email);
                 cout << "Ingrese cuit ";
@@ -235,7 +275,18 @@ void editarCliente(){
                 agentes[id].setDireccion(dAux);
                 break;
             case 3:
-                /* code */
+                cout << "Ingrese descripcion IVA ";
+                getline(cin, agenteAux.desIva);
+                cout << "Ingrese valor IVA ";
+                cin >> agenteAux.iva;
+                fflush(stdin);
+                cout << "Ingrese descripcion IIBB ";
+                getline(cin, agenteAux.desIibb);
+                cout << "Ingrese valor IIBB ";
+                cin >> agenteAux.iibb;
+
+                agentes[id].setIva(agenteAux.desIva, agenteAux.iva);
+                agentes[id].setIibb(agenteAux.desIibb, agenteAux.iibb);
                 break;
             case 4:
                 break;
@@ -252,6 +303,29 @@ void editarCliente(){
     }
 
 
+
+}
+
+void eliminarCliente(){
+    int id = 0;
+    cout << "Ingrese el ID del cliente a editar\n";
+    cin >> id;
+    fflush(stdin);
+    id = validarId(id, "CLIENTE");
+    fflush(stdin);
+    for(int i=0; i<ultimoAgente; i++){
+        if(i == id){
+            while (i<ultimoAgente-1){
+                agentes[i] = agentes[i+1];
+                i++;
+            }
+            break;
+        }
+    
+    }   
+    ultimoAgente--;
+    cout << "Cliente eliminado con exito\n";
+
 }
 
 /*g++ -g -o menu menu.cpp Direccion.cpp Factura.cpp Entidad.cpp Porcentaje.cpp*/
@@ -267,7 +341,8 @@ int main(){
         cout << "3) Buscar Factura\n";
         cout << "4) Facturar\n";
         cout << "5) Editar Cliente\n";
-        cout << "6) Salir\n";
+        cout << "6) Eliminar Cliente\n";
+        cout << "7) Salir\n";
         cout << "Opcion: " ;
         cin>> op;
 	    fflush(stdin);
@@ -279,22 +354,31 @@ int main(){
                     ingresarAgente();
                     break;
                 case 2:
-                    buscarCliente();
+                    if (ultimoAgente == 0){
+                        cout << "Primero debe registrar un cliente\n";
+                    } else {buscarCliente();}
                     break;
                 case 3:
-                    buscarFactura();
+                    if (ultimaFactura == 0){
+                        cout << "Primero debe facturar productos\n";
+                    } else {buscarFactura();}
                     break;
                 case 4:
-                    facturar();
+                    if(ultimoAgente == 0){
+                        cout << "Primero debe crear un cliente\n";
+                    }else {facturar();}
                     break;
                 case 5:
                     if (ultimoAgente == 0){
                         cout << "Primero debe crear un cliente\n";
-                    }else{
-                        editarCliente();
-                    }
+                    }else{editarCliente();}
                     break;
-                case 6:	
+                case 6:
+                    if (ultimoAgente == 0){
+                        cout << "Primero debe crear un cliente\n";
+                    }else{eliminarCliente();}
+                    break;
+                case 7:	
                     cout << "Gracias por utilizar el programa\n";
                     salir = true;
                     break;

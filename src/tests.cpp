@@ -35,10 +35,18 @@ void test0Entidad(){
 
 }
 
+void test0Agente(){
+    Agente a;
+    tipoCliente p = Proveedor;
+    a.setRazon(p);
+    cout << a.getRazon();
+}
+
 void test0Factura(){
     Agente a;
+    tipoCliente p = Proveedor;
     a.grabarInfo("Av Marquez", 2521, "13", "9", "1566071993", "ivanuntref@gmail.com", "20388898993", "Ivan", 
-                "Cliente particular", "IVA", 21, "IIBB", 31);
+                p, "IVA", 21, "IIBB", 31);
     /*(string _calle, int _nro, int _piso, char _depto, string _tel, string _email, string _cuil, string _nombre, string _razon, string _descriptIva, int _porcIva, string _descriptIibb, int _porcIibb)*/
     Head h;
     h.grabarInfoHead(a, "14/10/2021", 1);
@@ -51,8 +59,9 @@ void test1Factura() {
     Head h;
     Agente a;
     Factura f;
+    tipoCliente p = Proveedor;
     a.grabarInfo("Av Marquez", 2521, "13", "9", "1566071993", "ivanuntref@gmail.com", "20388898993", "Ivan", 
-                "Cliente particular", "IVA", 21, "IIBB", 31);
+                p, "IVA", 21, "IIBB", 31);
 
     h.grabarInfoHead(a, "20/04/2021", 1);
 
@@ -89,16 +98,55 @@ void test1Factura() {
     f.imprimirInfoFactura();
 }
 
+void test0EliminarCliente(){
+    Agente agentes[10];
+    Agente a;
+    Agente b;
+    Agente c;
+    Agente d;
+    tipoCliente p = Proveedor;
+    int agenteEliminar = 0;
+    int cantidadAgentes = 4;
+    a.grabarInfo("Uno", 2521, "13", "9", "1566071993", "ivanuntref@gmail.com", "20388898993", "Ivan", 
+                p, "IVA", 21, "IIBB", 31);
+    b.grabarInfo("Dos", 2521, "13", "9", "1566071993", "ivanuntref@gmail.com", "20388898993", "Ivan", 
+            p, "IVA", 21, "IIBB", 31);
+    c.grabarInfo("Tres", 2521, "13", "9", "1566071993", "ivanuntref@gmail.com", "20388898993", "Ivan", 
+            p, "IVA", 21, "IIBB", 31);
+    d.grabarInfo("Cuatro", 2521, "13", "9", "1566071993", "ivanuntref@gmail.com", "20388898993", "Ivan", 
+            p, "IVA", 21, "IIBB", 31);
+
+    agentes[0] = a;
+    agentes[1] = b;
+    agentes[2] = c;
+    agentes[3] = d;
+    for(int i=0; i<cantidadAgentes; i++){
+        if(i == agenteEliminar){
+            while (i<cantidadAgentes-1){
+                agentes[i] = agentes[i+1];
+                i++;
+            }
+            break;
+        }
+        
+    }
+    cantidadAgentes--;
+    cout << cantidadAgentes << "\n";
+
+    for(int i=0; i<cantidadAgentes; i++){
+        cout << agentes[i].getDireccion().getCalle() << "\n";
+    }
+    
+
+}
+
 //g++ -g -o tests tests.cpp Direccion.cpp Entidad.cpp
 //g++ -g -o tests tests.cpp Direccion.cpp Entidad.cpp Porcentaje.cpp Factura.cpp
 
 
 
 int main(){
-    test1Factura();
-    /*char c;
-    c = getchar();
-    */
+    test0EliminarCliente();
     system("pause");
 	return 0;
 }
